@@ -1,0 +1,28 @@
+<div *ngIf="pizzaToDisplay" class="container mt-4">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="text-center">{{ pizzaToDisplay.name }}</h1>
+            <img class="card-img-top" [src]="pizzaToDisplay.picture" alt="{{ pizzaToDisplay.name }}">
+            <p class="text-center" style="font-size: 1.2em;">{{ pizzaToDisplay.created | date | uppercase }}</p>
+            <p class="text-center" style="font-size: 1.2em;">Nutri-Score: {{ pizzaToDisplay.nutriScore }}</p>
+            <div class="text-center">
+              <span *ngFor="let ingredient of pizzaToDisplay.compositions" class="{{ ingredient | pizzaIngredientColor}}" style="font-size: 1.1em;">{{ingredient}}</span>
+            </div>
+          </div>
+          <div class="text-center mt-3">
+            <button class="btn btn-secondary" (click)="ret()">Retour</button>
+            <button class="btn btn-secondary" (click)="editPizza(pizzaToDisplay)">Editer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="container mt-4" *ngIf="!pizzaToDisplay">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+    <h4 class="text-center">Aucune pizza à afficher !</h4>
+    </div>
+  </div>
+</div>
